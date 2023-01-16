@@ -2,15 +2,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Main {
-	static class Pair implements Comparable<Pair> {
-		int first;
-		int second;
-
-		public int compareTo(Pair p) {
-			return this.first - p.first;
-		}
-	}
-
 	public static void main(String[] args) throws Exception {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String[] splitedLine = in.readLine().split(" ");
