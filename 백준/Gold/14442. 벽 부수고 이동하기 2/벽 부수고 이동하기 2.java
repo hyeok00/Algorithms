@@ -38,38 +38,42 @@ public class Main {
 			}
 		}
 
-		int isVisit[][][] = new int[K + 1][N][M];
+		boolean isVisit[][][] = new boolean[K + 1][N][M];
 		Queue<Pos> q = new ArrayDeque<>();
-		isVisit[0][0][0] = 1;
+		isVisit[0][0][0] = true;
 
 		q.add(new Pos(0, 0, 0));
 
+		int depth = 0;
 		while (!q.isEmpty()) {
-			Pos p = q.poll();
-			if (p.x == N - 1 && p.y == M - 1) {
-				System.out.println(isVisit[p.count][p.x][p.y]);
-				return;
-			}
+			int size = q.size();
+			depth++;
+			while (size-- > 0) {
+				Pos p = q.poll();
+				if (p.x == N - 1 && p.y == M - 1) {
+					System.out.println(depth);
+					return;
+				}
 
-			for (int i = 0; i < 4; ++i) {
-				int nextX = p.x + dx[i];
-				int nextY = p.y + dy[i];
-				if (isInRange(nextX, nextY)) {
-					if (map[nextX][nextY] == 0 && isVisit[p.count][nextX][nextY] == 0) {
-						isVisit[p.count][nextX][nextY] = isVisit[p.count][p.x][p.y] + 1;
-						q.add(new Pos(nextX, nextY, p.count));
-					} else {
-						// 벽인 경우
-						if (p.count < K && isVisit[p.count + 1][nextX][nextY] == 0) {
-							isVisit[p.count + 1][nextX][nextY] = isVisit[p.count][p.x][p.y] + 1;
-							q.add(new Pos(nextX, nextY, p.count + 1));
+				for (int i = 0; i < 4; ++i) {
+					int nextX = p.x + dx[i];
+					int nextY = p.y + dy[i];
+					if (isInRange(nextX, nextY)) {
+						if (map[nextX][nextY] == 0 && isVisit[p.count][nextX][nextY] == false) {
+							isVisit[p.count][nextX][nextY] = true;
+							q.add(new Pos(nextX, nextY, p.count));
+						} else {
+
+							if (p.count < K && isVisit[p.count + 1][nextX][nextY] == false) {
+								isVisit[p.count + 1][nextX][nextY] = true;
+								q.add(new Pos(nextX, nextY, p.count + 1));
+							}
 						}
 					}
 				}
 			}
 		}
 		System.out.println(-1);
-
 	}
 
 	private static boolean isInRange(int nextX, int nextY) {
