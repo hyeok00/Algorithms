@@ -29,14 +29,15 @@ public class Main {
 			}
 		}
 
+		int result = 0;
 		for (int i = 0; i < H; ++i) {
 			for (int j = 1; j <= W; ++j) {
 				if (map[i][j] == BLANK)
 					simulation(i, j);
+				if(map[i][j] == POSSIBLE)
+					result++;
 			}
 		}
-
-		int result = getPossibleCount();
 		System.out.println(result);
 	}
 
@@ -82,7 +83,7 @@ public class Main {
 		}
 		return false;
 	}
-
+    
 	private static int stoi(String s) {
 		return Integer.parseInt(s);
 	}
