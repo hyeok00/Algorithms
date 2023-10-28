@@ -49,6 +49,7 @@ public class Main {
 		}
 
 		String base = "";
+		int length = 0;
 		if (list.get(N - 1).number == 0) {
 			int tempCost = target - list.get(N - 2).cost;
 			if (tempCost < 0) {
@@ -57,12 +58,12 @@ public class Main {
 				return;
 			}
 			base += Integer.toString(list.get(N - 2).number);
-			int length = tempCost / list.get(N - 1).cost;
+			length = tempCost / list.get(N - 1).cost;
 			for (int i = 0; i < length; ++i)
 				base += Integer.toString(list.get(N - 1).number);
 			target = tempCost - list.get(N - 1).cost * length;
 		} else {
-			int length = target / list.get(N - 1).cost;
+			length = target / list.get(N - 1).cost;
 			for (int i = 0; i < length; ++i)
 				base += Integer.toString(list.get(N - 1).number);
 			target = target - list.get(N - 1).cost * length;
@@ -84,11 +85,7 @@ public class Main {
 			if (!isChanged)
 				break;
 		}
-		StringBuilder sb = new StringBuilder();
-		for (char c : arr)
-			sb.append(c);
-
-		System.out.println(sb);
+		System.out.println(arr);
 	}
 
 	private static int stoi(String s) {
