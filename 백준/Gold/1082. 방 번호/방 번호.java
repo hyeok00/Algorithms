@@ -71,19 +71,14 @@ public class Main {
 
 		char[] arr = base.toCharArray();
 		for (int i = 0; i < base.length(); i++) {
-			boolean isChanged = false;
 			int curNumberCost = cost[arr[i] - '0'];
 			for (int j = N - 1; j >= 0; j--) {
 				if (target - (cost[j] - curNumberCost) >= 0) {
 					target = target - (cost[j] - curNumberCost);
 					arr[i] = (char)(j + '0');
-					isChanged = true;
+                    break;
 				}
-				if (isChanged)
-					break;
 			}
-			if (!isChanged)
-				break;
 		}
 		System.out.println(arr);
 	}
