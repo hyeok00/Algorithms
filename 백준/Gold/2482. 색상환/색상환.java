@@ -20,7 +20,7 @@ public class Main {
 			dp[i][0] = 1;
 		}
 		for (int i = 4; i <= N; ++i) {
-			for (int j = 1; j <= K; ++j) {
+			for (int j = 1; j <= K && j<=i/2; ++j) {
 				dp[i][j] = (dp[i - 2][j - 1] % DIVIDER + dp[i - 1][j] % DIVIDER) % DIVIDER;
 			}
 		}
