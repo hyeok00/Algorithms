@@ -25,6 +25,7 @@ class Solution {
                 if(s.charAt(j) == 'R'){
                     q.add(new Point(i,j));
                     visit[i][j] = 1;
+                    break;
                 }
             }
         }
