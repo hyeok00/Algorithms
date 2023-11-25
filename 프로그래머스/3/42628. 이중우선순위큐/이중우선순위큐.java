@@ -1,4 +1,5 @@
 import java.util.*;
+
 class Solution {
     public int[] solution(String[] operations) {
         List<Integer> list = new LinkedList();
@@ -7,9 +8,9 @@ class Solution {
             char operand = split[0].charAt(0);
             int num = Integer.parseInt(split[1]);
             if(operand == 'I'){
-                if(list.isEmpty()){
+                if(list.isEmpty())
                     list.add(num);
-                }else{                    
+                else{                    
                     int size = list.size();
                     if(size == 1){
                         if(list.get(0) > num)
@@ -25,9 +26,9 @@ class Solution {
                                 break;
                             }
                         }
-                        if(!flag) {
+                        
+                        if(!flag)
                             list.add(num);
-                        }
                     }
                 }
             }else{
@@ -39,17 +40,10 @@ class Solution {
                 }
             }
         }
-        for(int i : list)
-            System.out.println(i);
         
-        int[] answer = new int[2];
-        if(!list.isEmpty()){
-            answer[0] = list.get(list.size()-1);
-            answer[1] = list.get(0);
-        }else{
-            answer[0] = 0;
-            answer[1] = 0;
-        }
-        return answer;
+        if(!list.isEmpty())
+            return new int[] {list.get(list.size() - 1), list.get(0)};
+        else
+            return new int[] {0,0};
     }
 }
