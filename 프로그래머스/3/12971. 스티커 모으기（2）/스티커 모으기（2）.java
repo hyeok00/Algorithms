@@ -10,7 +10,6 @@ class Solution {
         
 		int[][] arr = new int[2][len + 1];
 
-		// Step1. 첫번째 집을 포함하는 경우
 		arr[0][0] = sticker[0];
 		arr[0][1] = Math.max(sticker[0], sticker[1]);
 
@@ -26,7 +25,6 @@ class Solution {
 			}
 		}
 
-		// Step2. 마지막 집을 포함하는 경우
 		arr[1][1] = sticker[1];
 		arr[1][2] = Math.max(sticker[1], sticker[2]);
 
@@ -42,7 +40,6 @@ class Solution {
 			}
 		}
 
-		// Step3. 위의 두 케이스 중 가장 큰값이 정답이다.
 		return Arrays.stream(arr).flatMapToInt(Arrays::stream).max().getAsInt();
 	}
 }
