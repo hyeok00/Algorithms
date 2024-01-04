@@ -13,16 +13,18 @@ class Solution {
 
 		arr[0][0] = 1;
 
+        // 가장 왼쪽 열
 		for(int i = 1 ; i < N; ++i)
 			if(cityMap[0][i] != 1) // 통행금지가 아니라면
 				arr[0][i] = arr[0][i - 1];
-
+        
+        // 가장 위쪽 행
 		for(int i = 1 ; i < M; ++i)
 			if(cityMap[i][0] != 1) // 통행금지가 아니라면
 				arr[i][0] = arr[i - 1][0];
 
-		for(int x = 1 ; x < M; ++x){ // 세로
-			for(int y = 1 ; y < N; ++y){ // 가로
+		for(int x = 1 ; x < M; ++x){ // 가로
+			for(int y = 1 ; y < N; ++y){ // 세로
 				// (x,y)지점에 가기위한 경우의 수는 위에서 오는 경우와 아래에서 오는 경우를 합친 수이다.
 				if(map[x][y] == 0)
 					arr[x][y] = (getCount(x, y, LEFT) + getCount(x, y, TOP)) % MOD;
@@ -53,9 +55,9 @@ class Solution {
 			return 0;
 
 		// 해당 위치에 회전제한이 있는 경우
-		if(map[fixedX][fixedY] == 2){
+		if(map[fixedX][fixedY] == 2)
 			return getCount(fixedX, fixedY, d);
-		}
+		
 		return 0;
 	}
 
