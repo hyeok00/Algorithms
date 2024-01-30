@@ -5,12 +5,7 @@ class Solution {
     int[] dy = {0, 0, -1, 1};
     
     public int[] solution(int m, int n, int s, int[][] time_map) {
-        int moveDistance = 0;
-        int sumOfTalkTime = 0;
-      
         int[][] moveCountMap = new int[m][n];
-        
-        moveCountMap[0][0] = 1;
         Queue<int[]> q = new ArrayDeque();
         q.add(new int[] {0, 0});
       
@@ -47,7 +42,7 @@ class Solution {
         }
         
         int[] answer = new int[2];
-        answer[0] = moveCountMap[m-1][n-1] - 1;
+        answer[0] = moveCountMap[m-1][n-1];
         answer[1] = (int)dist[m-1][n-1];
       
         return answer;
