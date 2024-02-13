@@ -59,17 +59,11 @@ public class Main {
 		PriorityQueue<Node> pq = new PriorityQueue<>();
 		pq.add(new Node(0, 0, 0));
 
-		int minTransferCount = Integer.MAX_VALUE;
 		while (!pq.isEmpty()) {
 			Node cur = pq.poll();
-			if (cur.to == M) {
-				if (cur.count <= minTransferCount) {
-					dist[cur.to] = Math.min(dist[cur.to], cur.weight);
-					minTransferCount = Math.min(minTransferCount, cur.count);
-				}
+			if (cur.to == M)
 				break;
-			}
-
+		
 			for (Node next : graph[cur.to]) {
 				if (dist[next.to] > dist[cur.to] + next.weight) {
 					dist[next.to] = dist[cur.to] + next.weight;
