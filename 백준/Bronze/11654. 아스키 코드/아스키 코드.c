@@ -1,1 +1,1 @@
-main(c){scanf("%c", &c);printf("%d", c);}
+main(c){gets(&c);printf("%d",c);}
