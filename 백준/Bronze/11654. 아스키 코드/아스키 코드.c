@@ -1,0 +1,1 @@
+main(c){scanf("%c", &c);printf("%d", c);}
