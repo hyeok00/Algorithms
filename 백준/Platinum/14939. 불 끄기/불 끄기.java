@@ -48,7 +48,7 @@ public class Main {
 				}
 			}
 
-			if (isValidate(simulationArr))
+			if (isValidate(simulationArr[SIZE-1]))
 				result = Math.min(result, count);
 		}
 
@@ -58,11 +58,10 @@ public class Main {
 			System.out.println(result);
 	}
 
-	private static boolean isValidate(char[][] chars) {
-		for (char[] line : chars)
-			for (char c : line)
-				if (c == 'O')
-					return false;
+	private static boolean isValidate(char[] chars) {
+		for (char c : chars)
+			if (c == 'O')
+				return false;
 		return true;
 	}
 
