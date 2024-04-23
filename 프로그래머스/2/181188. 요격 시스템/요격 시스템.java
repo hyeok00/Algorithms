@@ -1,14 +1,9 @@
 import java.util.Arrays;
 
 public class Solution {
-
-	public int solution(int[][] targets) {
+		public int solution(int[][] targets) {
 		int answer = 0;
-		Arrays.sort(targets, (a, b) -> {
-			if (a[1] == b[1])
-				return a[0] - b[0];
-			return b[1] - a[1];
-		});
+		Arrays.sort(targets, (a, b) -> b[1] - a[1]);
 
 		int left = targets[0][0];
 		for (int[] data : targets) {
