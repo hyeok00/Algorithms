@@ -9,23 +9,21 @@ public class Solution {
 	public int[] solution(int[] fees, String[] records) {
 		for (String record : records) {
 			String[] inputs = record.split(" ");
-			int time = getTime(inputs[0]);
-			if (inputs[2].equals("IN")) {
-				parkingRecordMap.put(inputs[1], time);
-			} else {
-				int diff = time - parkingRecordMap.get(inputs[1]);
-				parkingTime.put(inputs[1], parkingTime.getOrDefault(inputs[1], 0) + diff);
-				parkingRecordMap.remove(inputs[1]);
-			}
+			int time = timeToInt(inputs[0]);
+			if (inputs[2].equals("IN"))
+				parkingTime.put(inputs[1], parkingTime.getOrDefault(inputs[1], 0) - time);
+			else
+				parkingTime.put(inputs[1], parkingTime.getOrDefault(inputs[1], 0) + time);
+
 		}
 
-        // 23:59에 강제 출차 처리
-		int last = getTime("23:59");
-		for (String key : parkingRecordMap.keySet()) {
-			int diff = last - parkingRecordMap.get(key);
-			parkingTime.put(key, parkingTime.getOrDefault(key, 0) + diff);
-		}
-        
+		// 23:59에 강제 출차 처리
+		int last = timeToInt("23:59");
+		parkingTime.forEach((k, v) -> {
+			if (v <= 0)
+				parkingTime.put(k, v + last);
+		});
+
 		int[] answer = new int[parkingTime.size()];
 		int idx = 0;
 		for (String key : parkingTime.keySet()) {
@@ -44,7 +42,7 @@ public class Solution {
 		return answer;
 	}
 
-	private int getTime(String input) {
+	private int timeToInt(String input) {
 		String[] split = input.split(":");
 		return Integer.parseInt(split[0]) * 60 + Integer.parseInt(split[1]);
 	}
