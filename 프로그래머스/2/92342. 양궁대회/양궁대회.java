@@ -11,7 +11,7 @@ public class Solution {
 		N = n;
 		apeach = info;
 		maxScore = 0;
-		perm(SIZE-1, 0);
+		perm(SIZE - 1, 0);
 
 		if (maxScore == 0)
 			return new int[] {-1};
