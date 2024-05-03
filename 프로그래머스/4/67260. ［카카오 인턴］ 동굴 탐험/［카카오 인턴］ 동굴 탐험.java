@@ -28,38 +28,30 @@ class Solution {
 		int count = 1;
 
 		while (!q.isEmpty()) {
-			int size = q.size();
-			boolean hasNew = false;
-			while (size-- > 0) {
-				int cur = q.poll();
+			int cur = q.poll();
 
-				for (int next : list[cur]) {
-					// 갈 수 있으며, 방문한 적이 없다면 진행
-					if (canVisit[next] && !visit[next]) {
-						hasNew = true;
+			for (int next : list[cur]) {
+				// 갈 수 있으며, 방문한 적이 없다면 진행
+				if (canVisit[next] && !visit[next]) {
+					visit[next] = true;
+					q.add(next);
+					count++;
+				}
+			}
+
+			// 현재 방을 방문함으로써, 새롭게 열리는 방이 있는 경우
+			if (map.containsKey(cur)) {
+				int next = map.get(cur);
+				canVisit[next] = true;
+				for (int check : list[next]) {
+					if (visit[check]) {
 						visit[next] = true;
 						q.add(next);
 						count++;
-					}
-				}
-
-				// 현재 방을 방문함으로써, 새롭게 열리는 방이 있는 경우
-				if (map.containsKey(cur)) {
-					int next = map.get(cur);
-					canVisit[next] = true;
-					for(int check : list[next]){
-						if(visit[check]){
-							hasNew = true;
-							visit[next] = true;
-							q.add(next);
-							count++;
-							break;
-						}
+						break;
 					}
 				}
 			}
-			if (!hasNew)
-				break;
 		}
 		return count == n ? true : false;
 	}
