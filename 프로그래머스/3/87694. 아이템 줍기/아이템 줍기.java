@@ -45,12 +45,12 @@ class Solution {
 		int fixedY2 = data[3] * 2;
 
 		for (int i = fixedX1; i <= fixedX2; ++i) {
-			for (int j = fixedY1; j <= fixedY2; ++j) {
-				if (i == fixedX1 || i == fixedX2 || j == fixedY1 || j == fixedY2)
-					board[i][j] = 1;
-				else
-					board[i][j] = 0;
-			}
+			board[i][fixedY1] = 1;
+			board[i][fixedY2] = 1;
+		}
+		for (int i = fixedY1; i <= fixedY2; ++i) {
+			board[fixedX1][i] = 1;
+			board[fixedX2][i] = 1;
 		}
 	}
 }
